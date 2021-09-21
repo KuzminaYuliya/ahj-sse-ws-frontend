@@ -37,6 +37,10 @@ export default class Logic {
     const { ws } = this;
     ws.binaryType = 'blob';
 
+    window.addEventListener('beforeunload', () => {
+      this.ws.send(JSON.stringify({ login: this.user }));
+    });
+
     ws.addEventListener('open', () => {
       console.log('connected');
     });
